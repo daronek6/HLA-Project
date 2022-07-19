@@ -1,0 +1,56 @@
+(FED
+  (Federation producer-consumer)
+  (FEDversion v1.3)
+  (spaces
+    (space ProjectSpace
+      (dimension ProjectDimension)
+    )
+  )
+  (interactions
+    (class InteractionRoot reliable timestamp
+      (class RTIprivate reliable timestamp)
+      (class Finish reliable timestamp)
+      (class sendPassengerJoinQueue reliable timestamp ProjectSpace
+		(parameter passengerId)
+		(parameter startRegionId)
+	  )
+	  (class sendDestinationToTaxi reliable timestamp ProjectSpace
+		(parameter taxiId)
+		(parameter startRegionId)
+		(parameter endRegionId)
+	  )
+	  (class sendPassengerEnteredTaxi reliable timestamp ProjectSpace
+		(parameter taxiId)
+		(parameter passengerId)
+		(parameter regionId)
+	  )
+	  (class sendDistance reliable timestamp ProjectSpace
+		(parameter distance)
+		(parameter taxiId)
+		(parameter endRegionId)
+	  )
+	  (class sendCheckDistance reliable timestamp ProjectSpace
+		(parameter taxiId)
+		(parameter startRegionId)
+		(parameter endRegionId)
+	  )
+	  (class sendTaxiStarted reliable timestamp ProjectSpace
+		(parameter taxiId)
+		(parameter endRegionId)
+		(parameter rideTime)
+	  )
+	  (class sendTaxiArrivedToRegion reliable timestamp ProjectSpace
+		(parameter endRegionId)
+		(parameter taxiId)
+	  )
+	  (class sendAskPassengerForDestination reliable timestamp ProjectSpace
+		(parameter taxiId)
+		(parameter passengerId)
+	  )
+	  (class simulationEnded reliable timestamp ProjectSpace
+	    (parameter federate)
+	  )
+    )
+  )
+)
+
